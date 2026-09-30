@@ -8,6 +8,7 @@
   <meta name="description"
     content="Guia de identidade visual oficial, paleta de cores, tipografia e download de assets da NBX Projects.">
   <link rel="icon" type="image/svg+xml" href="assets/logos/favicon.svg">
+  <link rel="alternate icon" href="assets/logos/favicon.ico">
 
   <!-- Google Fonts: Nunito Sans & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -454,11 +455,18 @@
       border-radius: 50%;
       cursor: pointer;
       border: 1px solid rgba(0, 0, 0, 0.15);
+      padding: 0;
       transition: transform var(--transition-fast);
     }
 
     .bg-dot:hover {
       transform: scale(1.25);
+    }
+
+    .bg-dot:focus-visible,
+    .bg-dot[aria-pressed="true"] {
+      outline: 2px solid var(--color-casca);
+      outline-offset: 2px;
     }
 
     /* Detalhes do Asset */
@@ -516,6 +524,10 @@
       grid-template-columns: 1fr 1fr;
       gap: 8px;
       margin-bottom: 8px;
+    }
+
+    .asset-download-ico {
+      grid-column: 1 / -1;
     }
 
     .asset-quick-tools {
@@ -829,6 +841,11 @@
       max-height: 260px;
     }
 
+    .modal-bg-option[aria-pressed="true"] {
+      border-color: var(--color-grafite);
+      box-shadow: 0 0 0 2px var(--color-aveia);
+    }
+
     .code-snippet-box {
       position: relative;
       margin-top: 14px;
@@ -1054,14 +1071,19 @@
             </svg>
             GitHub
           </a>
+          <a href="https://github.com/NBX-Projects" target="_blank" rel="noopener"
+            class="btn btn-outline">Organização</a>
         </div>
       </div>
 
       <div class="hero-preview">
-        <img src="assets/logos/logo-horizontal.svg" alt="NBX Projects Logo Horizontal">
+        <img src="assets/logos/logo-horizontal.svg"
+          alt="Logo principal vetorial da NBX Projects, com fundo transparente">
         <span style="font-size: 12px; color: var(--color-casca); margin-top: 14px; font-weight: 600;">
-          Assinatura Horizontal Principal
+          Logo principal · SVG transparente
         </span>
+        <a href="assets/logos/logo-horizontal.svg" download="nbx-projects-logo-principal.svg"
+          class="btn btn-primary btn-sm" style="margin-top: 12px;">Baixar logo principal (SVG)</a>
       </div>
     </div>
   </section>
@@ -1196,10 +1218,10 @@
         </div>
 
         <div style="display: flex; gap: 8px; justify-content: flex-end; margin-bottom: 16px;">
-          <button class="btn btn-outline btn-sm" onclick="setModalBg('bg-papel')">Papel</button>
-          <button class="btn btn-outline btn-sm" onclick="setModalBg('bg-aveia')">Aveia</button>
-          <button class="btn btn-outline btn-sm" onclick="setModalBg('bg-grafite')">Grafite</button>
-          <button class="btn btn-outline btn-sm" onclick="setModalBg('bg-checker')">Transparente</button>
+          <button class="btn btn-outline btn-sm modal-bg-option" data-bg="bg-papel" aria-pressed="false" onclick="setModalBg('bg-papel', this)">Papel</button>
+          <button class="btn btn-outline btn-sm modal-bg-option" data-bg="bg-aveia" aria-pressed="false" onclick="setModalBg('bg-aveia', this)">Aveia</button>
+          <button class="btn btn-outline btn-sm modal-bg-option" data-bg="bg-grafite" aria-pressed="false" onclick="setModalBg('bg-grafite', this)">Grafite</button>
+          <button class="btn btn-outline btn-sm modal-bg-option" data-bg="bg-checker" aria-pressed="false" onclick="setModalBg('bg-checker', this)">Quadriculado</button>
         </div>
 
         <p id="modalDesc" style="color: var(--color-casca); margin-bottom: 14px; font-size: 14px;"></p>
@@ -1207,6 +1229,7 @@
         <div style="display: flex; gap: 10px; margin-bottom: 20px;">
           <button class="btn btn-primary btn-sm" id="modalBtnSvg">Baixar SVG</button>
           <button class="btn btn-outline btn-sm" id="modalBtnPng">Baixar PNG (Alta Resolução)</button>
+          <a class="btn btn-outline btn-sm" id="modalBtnIco" href="assets/logos/favicon.ico" download="favicon.ico" hidden>Baixar favicon (.ICO)</a>
           <button class="btn btn-outline btn-sm" id="modalBtnCopyXml">Copiar Código SVG</button>
         </div>
 
@@ -1254,6 +1277,9 @@
             <li><a href="docs/guia-identidade.html">Manual de Aplicação</a></li>
             <li><a href="https://github.com/NBX-Projects/brand-identity" target="_blank" rel="noopener">Repositório
                 GitHub</a></li>
+            <li><a href="https://github.com/NBX-Projects/ProjectNBX" target="_blank" rel="noopener">Projeto
+                ProjectNBX</a></li>
+            <li><a href="https://github.com/NBX-Projects" target="_blank" rel="noopener">Organização no GitHub</a></li>
           </ul>
         </div>
       </div>
@@ -1343,8 +1369,8 @@
         name: "Favicon",
         category: "symbols",
         filePath: "assets/logos/favicon.svg",
-        spec: "32 × 32 px · SVG",
-        desc: "Ícone web projetado para guias de navegadores, favoritos e web apps com alta legibilidade em escala mínima.",
+        spec: "SVG · ICO de 16 a 256 px",
+        desc: "Ícone do macaco para navegadores, favoritos e atalhos. Baixe em SVG, PNG ou ICO com tamanhos de 16, 32, 48, 64, 128 e 256 px.",
         defaultBg: "bg-papel",
         dark: false
       },
@@ -1434,11 +1460,11 @@
         card.innerHTML = `
           <div class="asset-preview ${bgClass}" id="preview-${asset.id}">
             <div class="preview-bg-switcher">
-              <span class="bg-dot" style="background: #F8F4EC;" title="Fundo Papel" onclick="setCardBg('${asset.id}', 'bg-papel')"></span>
-              <span class="bg-dot" style="background: #E7D9C9;" title="Fundo Aveia" onclick="setCardBg('${asset.id}', 'bg-aveia')"></span>
-              <span class="bg-dot" style="background: #302B28;" title="Fundo Grafite" onclick="setCardBg('${asset.id}', 'bg-grafite')"></span>
-              <span class="bg-dot" style="background: #FFFFFF;" title="Fundo Branco" onclick="setCardBg('${asset.id}', 'bg-white')"></span>
-              <span class="bg-dot bg-checker" title="Fundo Transparente" onclick="setCardBg('${asset.id}', 'bg-checker')"></span>
+              <button type="button" class="bg-dot" style="background: #F8F4EC;" title="Prévia em Papel" aria-label="Prévia em fundo Papel" aria-pressed="${asset.defaultBg === 'bg-papel'}" onclick="setCardBg('${asset.id}', 'bg-papel', this)"></button>
+              <button type="button" class="bg-dot" style="background: #E7D9C9;" title="Prévia em Aveia" aria-label="Prévia em fundo Aveia" aria-pressed="${asset.defaultBg === 'bg-aveia'}" onclick="setCardBg('${asset.id}', 'bg-aveia', this)"></button>
+              <button type="button" class="bg-dot" style="background: #302B28;" title="Prévia em Grafite" aria-label="Prévia em fundo Grafite" aria-pressed="${asset.defaultBg === 'bg-grafite'}" onclick="setCardBg('${asset.id}', 'bg-grafite', this)"></button>
+              <button type="button" class="bg-dot" style="background: #FFFFFF;" title="Prévia em Branco" aria-label="Prévia em fundo branco" aria-pressed="${asset.defaultBg === 'bg-white'}" onclick="setCardBg('${asset.id}', 'bg-white', this)"></button>
+              <button type="button" class="bg-dot bg-checker" title="Prévia quadriculada para transparência" aria-label="Prévia quadriculada para transparência" aria-pressed="${asset.defaultBg === 'bg-checker'}" onclick="setCardBg('${asset.id}', 'bg-checker', this)"></button>
             </div>
             <img src="${asset.filePath}" alt="${asset.name}" id="img-${asset.id}">
           </div>
@@ -1461,6 +1487,10 @@
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
                 Baixar PNG
               </button>
+              ${asset.id === 'favicon' ? `
+              <a href="assets/logos/favicon.ico" download="favicon.ico" class="btn btn-outline btn-sm asset-download-ico">
+                Baixar favicon (.ICO)
+              </a>` : ''}
             </div>
 
             <div class="asset-quick-tools">
@@ -1480,10 +1510,11 @@
     }
 
     // Alterar fundo do card
-    function setCardBg(assetId, bgClass) {
+    function setCardBg(assetId, bgClass, selectedButton) {
       const preview = document.getElementById(`preview-${assetId}`);
       if (preview) {
         preview.className = `asset-preview ${bgClass}`;
+        preview.querySelectorAll('.bg-dot').forEach(button => button.setAttribute('aria-pressed', button === selectedButton));
       }
     }
 
@@ -1536,6 +1567,9 @@
       document.getElementById('modalDesc').textContent = asset.desc;
       document.getElementById('modalImg').src = asset.filePath;
       document.getElementById('modalPreviewBox').className = `modal-preview-box ${asset.defaultBg}`;
+      document.querySelectorAll('.modal-bg-option').forEach(button => {
+        button.setAttribute('aria-pressed', button.dataset.bg === asset.defaultBg);
+      });
 
       document.getElementById('modalBtnSvg').onclick = () => {
         const a = document.createElement('a');
@@ -1547,6 +1581,7 @@
       document.getElementById('modalBtnPng').onclick = () => {
         downloadPng(asset.filePath, `${asset.id}-hd.png`, 4);
       };
+      document.getElementById('modalBtnIco').hidden = asset.id !== 'favicon';
 
       document.getElementById('modalBtnCopyXml').onclick = () => {
         copySvgCode(asset.filePath, asset.name);
@@ -1574,8 +1609,9 @@
       document.getElementById('assetModal').classList.remove('active');
     }
 
-    function setModalBg(bgClass) {
+    function setModalBg(bgClass, selectedButton) {
       document.getElementById('modalPreviewBox').className = `modal-preview-box ${bgClass}`;
+      document.querySelectorAll('.modal-bg-option').forEach(button => button.setAttribute('aria-pressed', button === selectedButton));
     }
 
     // Fechar modal ao clicar fora ou com Escape
@@ -1638,6 +1674,11 @@
         if (brandRes.ok) {
           const brandJson = await brandRes.text();
           zip.file("brand.json", brandJson);
+        }
+
+        const faviconIcoRes = await fetch("assets/logos/favicon.ico");
+        if (faviconIcoRes.ok) {
+          logosFolder.file("favicon.ico", await faviconIcoRes.blob());
         }
 
         // Baixar todos os SVGs
