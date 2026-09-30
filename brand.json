@@ -1,0 +1,15 @@
+{
+  "brand": "NBX Projects",
+  "tagline": "Software feito com clareza e cuidado.",
+  "colors": {
+    "grafite-macio": "#302B28",
+    "casca": "#57483F",
+    "aveia": "#E7D9C9",
+    "papel": "#F8F4EC",
+    "argila-clara": "#B3A393"
+  },
+  "typography": {
+    "headings": "Nunito Sans, Segoe UI, Arial, sans-serif",
+    "body": "Segoe UI, Arial, sans-serif"
+  }
+}
