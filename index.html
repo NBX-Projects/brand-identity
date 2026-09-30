@@ -1,0 +1,1720 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NBX Projects — Central de Marca & Assets</title>
+  <meta name="description"
+    content="Guia de identidade visual oficial, paleta de cores, tipografia e download de assets da NBX Projects.">
+  <link rel="icon" type="image/svg+xml" href="assets/logos/favicon.svg">
+
+  <!-- Google Fonts: Nunito Sans & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Nunito+Sans:ital,opsz,wght@0,6..12,400..900;1,6..12,400..900&display=swap"
+    rel="stylesheet">
+
+  <!-- JSZip para empacotar os downloads num único clique -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+  <style>
+    :root {
+      --color-grafite: #302B28;
+      --color-casca: #57483F;
+      --color-aveia: #E7D9C9;
+      --color-papel: #F8F4EC;
+      --color-argila: #B3A393;
+
+      --color-bg: #F4EFE6;
+      --color-surface: #F8F4EC;
+      --color-surface-card: #FFFFFF;
+      --color-border: #E4D9CC;
+      --color-border-subtle: #ECE3D7;
+
+      --font-heading: 'Nunito Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-body: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Arial, sans-serif;
+      --font-mono: 'JetBrains Mono', Consolas, Monaco, monospace;
+
+      --shadow-sm: 0 2px 8px rgba(48, 43, 40, 0.04);
+      --shadow-md: 0 8px 24px rgba(48, 43, 40, 0.08);
+      --shadow-lg: 0 16px 40px rgba(48, 43, 40, 0.12);
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-pill: 9999px;
+
+      --transition-fast: 0.15s ease;
+      --transition-normal: 0.25s ease;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--color-bg);
+      color: var(--color-grafite);
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Utilitários e Tipografia */
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: var(--font-heading);
+      color: var(--color-grafite);
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* Header e Navegação */
+    header.site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(248, 244, 236, 0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--color-border);
+      transition: all var(--transition-normal);
+    }
+
+    .header-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand-logo-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 19px;
+      letter-spacing: -0.5px;
+    }
+
+    .brand-logo-link img {
+      height: 38px;
+      width: auto;
+      display: block;
+    }
+
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .nav-link {
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--color-casca);
+      transition: all var(--transition-fast);
+    }
+
+    .nav-link:hover {
+      background: var(--color-aveia);
+      color: var(--color-grafite);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all var(--transition-fast);
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background-color: var(--color-grafite);
+      color: var(--color-papel);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--color-casca);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border-color: var(--color-border);
+      color: var(--color-grafite);
+    }
+
+    .btn-outline:hover {
+      background: var(--color-surface);
+      border-color: var(--color-argila);
+    }
+
+    .btn-sm {
+      padding: 6px 12px;
+      font-size: 12px;
+    }
+
+    /* Hero Section */
+    .hero-section {
+      max-width: 1280px;
+      margin: 32px auto 48px;
+      padding: 0 24px;
+    }
+
+    .hero-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 48px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 40px;
+      align-items: center;
+      box-shadow: var(--shadow-sm);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::after {
+      content: '';
+      position: absolute;
+      right: -60px;
+      bottom: -60px;
+      width: 320px;
+      height: 320px;
+      background: url('assets/patterns/padrao-cauda.svg') no-repeat center;
+      background-size: contain;
+      opacity: 0.12;
+      pointer-events: none;
+    }
+
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      background: var(--color-aveia);
+      border-radius: var(--radius-pill);
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--color-casca);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 16px;
+    }
+
+    .hero-title {
+      font-size: 46px;
+      letter-spacing: -1.5px;
+      margin-bottom: 14px;
+      color: var(--color-grafite);
+    }
+
+    .hero-tagline {
+      font-size: 20px;
+      color: var(--color-casca);
+      margin-bottom: 24px;
+      max-width: 48ch;
+      line-height: 1.4;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .hero-preview {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 32px;
+      background: #FFFFFF;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .hero-preview img {
+      max-width: 100%;
+      height: auto;
+      max-height: 180px;
+    }
+
+    /* Container Principal */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Toolbar de Filtro e Busca */
+    .catalog-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 28px;
+      padding: 16px 20px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+    }
+
+    .filter-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .filter-tab {
+      padding: 8px 16px;
+      border-radius: var(--radius-pill);
+      border: 1px solid transparent;
+      background: transparent;
+      font-family: var(--font-heading);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--color-casca);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .filter-tab:hover {
+      background: rgba(231, 217, 201, 0.6);
+      color: var(--color-grafite);
+    }
+
+    .filter-tab.active {
+      background: var(--color-grafite);
+      color: var(--color-papel);
+    }
+
+    .toolbar-tools {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .search-box {
+      position: relative;
+    }
+
+    .search-input {
+      padding: 8px 14px 8px 34px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--color-border);
+      background: #FFFFFF;
+      font-size: 13px;
+      color: var(--color-grafite);
+      outline: none;
+      width: 220px;
+      transition: all var(--transition-fast);
+    }
+
+    .search-input:focus {
+      border-color: var(--color-casca);
+      box-shadow: 0 0 0 2px rgba(87, 72, 63, 0.15);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--color-argila);
+      pointer-events: none;
+      width: 14px;
+      height: 14px;
+    }
+
+    /* Grid de Assets */
+    .assets-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 24px;
+      margin-bottom: 64px;
+    }
+
+    .asset-card {
+      background: var(--color-surface-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .asset-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--color-argila);
+    }
+
+    /* Viewport do Asset */
+    .asset-preview {
+      position: relative;
+      height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      transition: background-color var(--transition-normal);
+      user-select: none;
+    }
+
+    .asset-preview img {
+      max-width: 82%;
+      max-height: 82%;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.04));
+      transition: transform var(--transition-fast);
+    }
+
+    .asset-card:hover .asset-preview img {
+      transform: scale(1.03);
+    }
+
+    /* Backgrounds configuráveis */
+    .bg-papel {
+      background-color: #F8F4EC;
+    }
+
+    .bg-aveia {
+      background-color: #E7D9C9;
+    }
+
+    .bg-grafite {
+      background-color: #302B28;
+    }
+
+    .bg-white {
+      background-color: #FFFFFF;
+    }
+
+    .bg-checker {
+      background-color: #FFFFFF;
+      background-image:
+        linear-gradient(45deg, #F0ECE4 25%, transparent 25%),
+        linear-gradient(-45deg, #F0ECE4 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, #F0ECE4 75%),
+        linear-gradient(-45deg, transparent 75%, #F0ECE4 75%);
+      background-size: 16px 16px;
+      background-position: 0 0, 0 8px, 8px -8px, -8px 0px;
+    }
+
+    /* Barra de controle de fundo no card */
+    .preview-bg-switcher {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      display: flex;
+      gap: 5px;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(4px);
+      padding: 3px 5px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--color-border-subtle);
+    }
+
+    .bg-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 1px solid rgba(0, 0, 0, 0.15);
+      transition: transform var(--transition-fast);
+    }
+
+    .bg-dot:hover {
+      transform: scale(1.25);
+    }
+
+    /* Detalhes do Asset */
+    .asset-info {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      border-top: 1px solid var(--color-border-subtle);
+      background: #FFFFFF;
+    }
+
+    .asset-badge-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .asset-type-badge {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--color-casca);
+      background: var(--color-aveia);
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    .asset-spec {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--color-argila);
+    }
+
+    .asset-name {
+      font-size: 17px;
+      font-weight: 800;
+      margin-bottom: 6px;
+      color: var(--color-grafite);
+    }
+
+    .asset-desc {
+      font-size: 13px;
+      color: var(--color-casca);
+      margin-bottom: 16px;
+      flex-grow: 1;
+      line-height: 1.45;
+    }
+
+    /* Ações de Download */
+    .asset-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 8px;
+    }
+
+    .asset-quick-tools {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 10px;
+      border-top: 1px dashed var(--color-border-subtle);
+    }
+
+    .tool-link {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--color-casca);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: none;
+      border: none;
+      padding: 4px 6px;
+      border-radius: 4px;
+      transition: all var(--transition-fast);
+    }
+
+    .tool-link:hover {
+      background: var(--color-surface);
+      color: var(--color-grafite);
+    }
+
+    /* Seção de Cores */
+    .section-title-wrap {
+      margin-bottom: 24px;
+    }
+
+    .section-pretitle {
+      font-size: 12px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-weight: 800;
+      color: var(--color-casca);
+      margin-bottom: 4px;
+    }
+
+    .section-title {
+      font-size: 32px;
+      letter-spacing: -1px;
+    }
+
+    .colors-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+      margin-bottom: 64px;
+    }
+
+    .color-card {
+      background: #FFFFFF;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .color-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .color-swatch {
+      height: 120px;
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      padding: 12px;
+    }
+
+    .color-swatch-badge {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: var(--radius-pill);
+      background: rgba(255, 255, 255, 0.85);
+      color: var(--color-grafite);
+      backdrop-filter: blur(4px);
+    }
+
+    .color-card-body {
+      padding: 16px;
+    }
+
+    .color-card-title {
+      font-size: 16px;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .color-card-role {
+      font-size: 12px;
+      color: var(--color-casca);
+      margin-bottom: 12px;
+    }
+
+    .color-codes {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .color-code-item {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      padding: 4px 8px;
+      background: var(--color-surface);
+      border-radius: 4px;
+    }
+
+    .color-code-item:hover {
+      background: var(--color-aveia);
+    }
+
+    /* Playground de Tipografia */
+    .typography-section {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      margin-bottom: 64px;
+    }
+
+    .typo-tester {
+      margin-top: 24px;
+      background: #FFFFFF;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: 24px;
+    }
+
+    .typo-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 18px;
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--color-border-subtle);
+      align-items: center;
+    }
+
+    .typo-slider-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .editable-text-field {
+      outline: none;
+      font-family: var(--font-heading);
+      font-weight: 800;
+      color: var(--color-grafite);
+      line-height: 1.2;
+      border-radius: 6px;
+      padding: 8px;
+      transition: background var(--transition-fast);
+    }
+
+    .editable-text-field:focus {
+      background: #FAF8F5;
+    }
+
+    /* Diretrizes / Dos and Don'ts */
+    .guidelines-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-bottom: 64px;
+    }
+
+    .guide-card {
+      background: #FFFFFF;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: 24px;
+    }
+
+    .guide-card.do {
+      border-top: 4px solid #388E3C;
+    }
+
+    .guide-card.dont {
+      border-top: 4px solid #D32F2F;
+    }
+
+    .guide-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+      font-weight: 800;
+      font-size: 16px;
+    }
+
+    .guide-header.do-text {
+      color: #2E7D32;
+    }
+
+    .guide-header.dont-text {
+      color: #C62828;
+    }
+
+    .guide-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--color-casca);
+    }
+
+    .guide-list li {
+      position: relative;
+      padding-left: 20px;
+    }
+
+    .guide-list li::before {
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+    }
+
+    .guide-card.do li::before {
+      content: '✓';
+      color: #388E3C;
+    }
+
+    .guide-card.dont li::before {
+      content: '✕';
+      color: #D32F2F;
+    }
+
+    /* Modal / Lightbox */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(48, 43, 40, 0.7);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-container {
+      background: #FFFFFF;
+      border-radius: var(--radius-lg);
+      max-width: 780px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--color-border);
+    }
+
+    .modal-header {
+      padding: 20px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .modal-close-btn {
+      background: none;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      color: var(--color-casca);
+      line-height: 1;
+    }
+
+    .modal-body {
+      padding: 24px;
+    }
+
+    .modal-preview-box {
+      min-height: 280px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 32px;
+      margin-bottom: 20px;
+      border: 1px solid var(--color-border);
+    }
+
+    .modal-preview-box img {
+      max-width: 90%;
+      max-height: 260px;
+    }
+
+    .code-snippet-box {
+      position: relative;
+      margin-top: 14px;
+    }
+
+    .code-snippet {
+      background: var(--color-grafite);
+      color: #FAF8F5;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      padding: 16px;
+      border-radius: var(--radius-sm);
+      overflow-x: auto;
+      max-height: 220px;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+
+    /* Toast Notification */
+    .toast-container {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 2000;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      pointer-events: none;
+    }
+
+    .toast {
+      background: var(--color-grafite);
+      color: #FFFFFF;
+      padding: 12px 20px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 600;
+      box-shadow: var(--shadow-md);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      animation: toastIn 0.25s ease-out forwards;
+      pointer-events: auto;
+    }
+
+    @keyframes toastIn {
+      from {
+        transform: translateY(20px);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    /* Footer */
+    footer.site-footer {
+      background: var(--color-grafite);
+      color: var(--color-papel);
+      padding: 48px 24px 32px;
+      margin-top: 80px;
+    }
+
+    .footer-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 32px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid rgba(231, 217, 201, 0.15);
+    }
+
+    .footer-brand {
+      max-width: 380px;
+    }
+
+    .footer-brand p {
+      color: var(--color-argila);
+      font-size: 14px;
+      margin-top: 10px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 48px;
+    }
+
+    .footer-col h4 {
+      color: var(--color-aveia);
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 14px;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 14px;
+    }
+
+    .footer-col a {
+      color: var(--color-papel);
+      opacity: 0.8;
+      transition: opacity var(--transition-fast);
+    }
+
+    .footer-col a:hover {
+      opacity: 1;
+      text-decoration: underline;
+    }
+
+    .footer-bottom {
+      max-width: 1280px;
+      margin: 24px auto 0;
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      color: var(--color-argila);
+    }
+
+    /* Responsividade */
+    @media (max-width: 900px) {
+      .hero-card {
+        grid-template-columns: 1fr;
+        padding: 32px;
+      }
+
+      .catalog-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .toolbar-tools {
+        justify-content: space-between;
+      }
+
+      .search-input {
+        width: 100%;
+      }
+
+      .assets-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="brand-logo-link">
+        <img src="assets/logos/logo-simbolo.svg" alt="Mascote NBX Projects">
+        <span>NBX Projects</span>
+      </a>
+
+      <nav class="header-nav">
+        <a href="#assets" class="nav-link">Catálogo de Assets</a>
+        <a href="#paleta" class="nav-link">Paleta de Cores</a>
+        <a href="#tipografia" class="nav-link">Tipografia</a>
+        <a href="docs/visao-geral.html" class="nav-link">Visão Geral</a>
+        <a href="docs/guia-identidade.html" class="nav-link">Manual da Marca</a>
+      </nav>
+
+      <div style="display: flex; gap: 10px; align-items: center;">
+        <button class="btn btn-primary" onclick="downloadAllAssetsZip()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+            <polyline points="7 10 12 15 17 10" />
+            <line x1="12" y1="15" x2="12" y2="3" />
+          </svg>
+          Baixar Brand Kit (.ZIP)
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-card">
+      <div>
+        <span class="badge-pill">Identidade Visual Oficial · v1.0</span>
+        <h1 class="hero-title">Software feito com clareza e cuidado.</h1>
+        <p class="hero-tagline">
+          Central oficial de ativos vetoriais, diretrizes de uso, paleta de cores e tipografia da <strong>NBX
+            Projects</strong>. Todos os arquivos prontos para consulta, cópia e download em SVG e PNG de alta resolução.
+        </p>
+
+        <div class="hero-actions">
+          <button class="btn btn-primary" onclick="downloadAllAssetsZip()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+              <polyline points="7 10 12 15 17 10" />
+              <line x1="12" y1="15" x2="12" y2="3" />
+            </svg>
+            Baixar Todos os Assets (.ZIP)
+          </button>
+          <a href="docs/guia-identidade.html" class="btn btn-outline">
+            Manual de Aplicação
+          </a>
+          <a href="https://github.com/NBX-Projects/brand-identity" target="_blank" rel="noopener"
+            class="btn btn-outline">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+            </svg>
+            GitHub
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-preview">
+        <img src="assets/logos/logo-horizontal.svg" alt="NBX Projects Logo Horizontal">
+        <span style="font-size: 12px; color: var(--color-casca); margin-top: 14px; font-weight: 600;">
+          Assinatura Horizontal Principal
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Container Principal -->
+  <main class="container" id="assets">
+
+    <!-- Toolbar de Filtros e Busca -->
+    <div class="catalog-toolbar">
+      <div class="filter-tabs" id="filterTabs">
+        <button class="filter-tab active" data-category="all">Todos os Assets (<span id="count-all">10</span>)</button>
+        <button class="filter-tab" data-category="logos">Logotipos & Assinaturas</button>
+        <button class="filter-tab" data-category="symbols">Símbolos & Ícones</button>
+        <button class="filter-tab" data-category="patterns">Grafismos & Padrões</button>
+        <button class="filter-tab" data-category="social">GitHub & Social</button>
+      </div>
+
+      <div class="toolbar-tools">
+        <div class="search-box">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8" />
+            <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          </svg>
+          <input type="text" id="searchInput" class="search-input" placeholder="Buscar asset...">
+        </div>
+      </div>
+    </div>
+
+    <!-- Grid de Assets -->
+    <div class="assets-grid" id="assetsGrid">
+      <!-- Cards serão gerados dinamicamente via JavaScript para permitir controle de cores, download e cópia direta -->
+    </div>
+
+    <!-- Seção de Paleta de Cores -->
+    <section id="paleta" style="margin-top: 40px;">
+      <div class="section-title-wrap">
+        <div class="section-pretitle">Design Tokens · Paleta Oficial</div>
+        <h2 class="section-title">Cores da Identidade</h2>
+        <p style="color: var(--color-casca); margin-top: 6px;">
+          Neutros quentes inspirados no mascote. Clique em qualquer cor para copiar o valor HEX diretamente.
+        </p>
+      </div>
+
+      <div class="colors-grid" id="colorsGrid">
+        <!-- Gerado via script baseado em brand.json -->
+      </div>
+    </section>
+
+    <!-- Playground de Tipografia -->
+    <section id="tipografia" class="typography-section">
+      <div class="section-title-wrap">
+        <div class="section-pretitle">Hierarquia Visual</div>
+        <h2 class="section-title">Tipografia da Marca</h2>
+        <p style="color: var(--color-casca); margin-top: 6px;">
+          <strong>Nunito Sans</strong> para títulos de impacto e clareza; <strong>Segoe UI / System Sans</strong> para
+          corpos de texto fluidos e legíveis.
+        </p>
+      </div>
+
+      <div class="typo-tester">
+        <div class="typo-controls">
+          <div class="typo-slider-group">
+            <label for="fontSizeSlider">Tamanho:</label>
+            <input type="range" id="fontSizeSlider" min="20" max="72" value="38">
+            <span id="fontSizeDisplay" style="font-family: var(--font-mono); font-size: 12px;">38px</span>
+          </div>
+          <div class="typo-slider-group">
+            <label for="fontWeightSelect">Peso:</label>
+            <select id="fontWeightSelect"
+              style="padding: 4px 8px; border-radius: 4px; border: 1px solid var(--color-border); font-family: var(--font-heading); font-size: 13px;">
+              <option value="600">600 — SemiBold</option>
+              <option value="700">700 — Bold</option>
+              <option value="800" selected>800 — ExtraBold</option>
+              <option value="900">900 — Black</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="editablePreview" class="editable-text-field" contenteditable="true" style="font-size: 38px;">
+          Software feito com clareza e cuidado.
+        </div>
+        <div style="font-size: 12px; color: var(--color-casca); margin-top: 10px;">
+          * Clique acima para testar seus próprios títulos e chamadas em tempo real.
+        </div>
+      </div>
+    </section>
+
+    <!-- Diretrizes de Aplicação (Faça & Evite) -->
+    <section style="margin-bottom: 64px;">
+      <div class="section-title-wrap">
+        <div class="section-pretitle">Consistência Visual</div>
+        <h2 class="section-title">Diretrizes de Aplicação</h2>
+      </div>
+
+      <div class="guidelines-grid">
+        <div class="guide-card do">
+          <div class="guide-header do-text">✓ Como Aplicar (Faça)</div>
+          <ul class="guide-list">
+            <li>Preserve sempre a proporção original de todos os arquivos.</li>
+            <li>Respeite o respiro mínimo ao redor do símbolo (altura equivalente ao olho do macaco).</li>
+            <li>Use o logo em versão colorida sobre fundos claros (papel, aveia ou branco).</li>
+            <li>Use a versão reversa sobre superfícies grafite ou escuras.</li>
+            <li>Prefira o arquivo <code>logo-simbolo-pequeno.svg</code> para aplicações menores que 24px.</li>
+          </ul>
+        </div>
+
+        <div class="guide-card dont">
+          <div class="guide-header dont-text">✕ O Que Não Fazer (Evite)</div>
+          <ul class="guide-list">
+            <li>Não altere, distorça ou estique as proporções do mascote ou tipografia.</li>
+            <li>Não substitua as cores oficiais por tons genéricos ou não catalogados.</li>
+            <li>Não adicione sombras projetadas, relevos, gradientes externos ou contornos no logo.</li>
+            <li>Não aplique a versão escura tradicional sobre fundos escuros sem contraste.</li>
+            <li>Não separe as partes do mascote nem altere suas feições ou proporções.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Modal / Lightbox para Inspeção de Asset -->
+  <div class="modal-overlay" id="assetModal">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 id="modalTitle">Detalhes do Asset</h3>
+        <button class="modal-close-btn" onclick="closeModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-preview-box bg-papel" id="modalPreviewBox">
+          <img id="modalImg" src="" alt="Preview">
+        </div>
+
+        <div style="display: flex; gap: 8px; justify-content: flex-end; margin-bottom: 16px;">
+          <button class="btn btn-outline btn-sm" onclick="setModalBg('bg-papel')">Papel</button>
+          <button class="btn btn-outline btn-sm" onclick="setModalBg('bg-aveia')">Aveia</button>
+          <button class="btn btn-outline btn-sm" onclick="setModalBg('bg-grafite')">Grafite</button>
+          <button class="btn btn-outline btn-sm" onclick="setModalBg('bg-checker')">Transparente</button>
+        </div>
+
+        <p id="modalDesc" style="color: var(--color-casca); margin-bottom: 14px; font-size: 14px;"></p>
+
+        <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+          <button class="btn btn-primary btn-sm" id="modalBtnSvg">Baixar SVG</button>
+          <button class="btn btn-outline btn-sm" id="modalBtnPng">Baixar PNG (Alta Resolução)</button>
+          <button class="btn btn-outline btn-sm" id="modalBtnCopyXml">Copiar Código SVG</button>
+        </div>
+
+        <div>
+          <label style="font-size: 12px; font-weight: 700; text-transform: uppercase; color: var(--color-casca);">
+            Código XML do Vetor (SVG):
+          </label>
+          <div class="code-snippet-box">
+            <pre class="code-snippet" id="modalSvgCode">Carregando código...</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <img src="assets/logos/logo-simbolo.svg" style="height: 32px;" alt="NBX">
+          <h3 style="color: #FFFFFF; font-size: 20px;">NBX Projects</h3>
+        </div>
+        <p>Software feito com clareza e cuidado.</p>
+        <p style="font-size: 12px; margin-top: 16px;">
+          Todos os direitos sobre a marca e identidade visual são reservados à organização NBX Projects.
+        </p>
+      </div>
+
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Recursos</h4>
+          <ul>
+            <li><a href="#assets">Catálogo de Assets</a></li>
+            <li><a href="#paleta">Paleta de Cores</a></li>
+            <li><a href="#tipografia">Tipografia</a></li>
+            <li><a href="brand.json" download>brand.json (Tokens)</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Documentação</h4>
+          <ul>
+            <li><a href="docs/visao-geral.html">Visão Geral da Identidade</a></li>
+            <li><a href="docs/guia-identidade.html">Manual de Aplicação</a></li>
+            <li><a href="https://github.com/NBX-Projects/brand-identity" target="_blank" rel="noopener">Repositório
+                GitHub</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>NBX Projects · Identidade Visual Oficial</span>
+      <span>Publicado via GitHub Pages</span>
+    </div>
+  </footer>
+
+  <script>
+    // Catálogo Completo de Ativos da NBX Projects
+    const ASSETS_DATA = [
+      {
+        id: "logo-horizontal",
+        name: "Logo Horizontal",
+        category: "logos",
+        filePath: "assets/logos/logo-horizontal.svg",
+        spec: "780 × 256 px · SVG",
+        desc: "Assinatura principal da marca com mascote à esquerda e logotipo à direita. Recomendado para cabeçalhos, sites e aplicações principais.",
+        defaultBg: "bg-papel",
+        dark: false
+      },
+      {
+        id: "logo-empilhado",
+        name: "Logo Empilhado",
+        category: "logos",
+        filePath: "assets/logos/logo-empilhado.svg",
+        spec: "SVG Vetorial",
+        desc: "Versão vertical com símbolo centralizado sobre o logotipo. Ideal para aplicações quadradas, crachás, banners e embalagens.",
+        defaultBg: "bg-papel",
+        dark: false
+      },
+      {
+        id: "logo-horizontal-reverso",
+        name: "Logo Horizontal Reverso",
+        category: "logos",
+        filePath: "assets/logos/logo-horizontal-reverso.svg",
+        spec: "780 × 256 px · SVG",
+        desc: "Versão adaptada com logotipo em tom papel claro para aplicação exclusiva sobre fundos escuros (Grafite #302B28).",
+        defaultBg: "bg-grafite",
+        dark: true
+      },
+      {
+        id: "logo-horizontal-monocromatico",
+        name: "Logo Monocromático",
+        category: "logos",
+        filePath: "assets/logos/logo-horizontal-monocromatico.svg",
+        spec: "780 × 256 px · SVG",
+        desc: "Versão em uma única cor sólida, ideal para impressão PB, carimbos, gravação a laser ou mídias restritas.",
+        defaultBg: "bg-papel",
+        dark: false
+      },
+      {
+        id: "logo-simbolo",
+        name: "Símbolo Mascote NBX",
+        category: "symbols",
+        filePath: "assets/logos/logo-simbolo.svg",
+        spec: "256 × 256 px · SVG",
+        desc: "Mascote completo em vetor. Elemento central e mais expressivo da marca, usado de forma isolada quando o nome já estiver contextualizado.",
+        defaultBg: "bg-papel",
+        dark: false
+      },
+      {
+        id: "logo-simbolo-pequeno",
+        name: "Símbolo Simplificado",
+        category: "symbols",
+        filePath: "assets/logos/logo-simbolo-pequeno.svg",
+        spec: "SVG Vetorial Otimizado",
+        desc: "Traços otimizados para manter nitidez impecável em escalas reduzidas (16px a 32px), como tabs de navegadores e ícones de app.",
+        defaultBg: "bg-papel",
+        dark: false
+      },
+      {
+        id: "avatar",
+        name: "Avatar Social",
+        category: "social",
+        filePath: "assets/logos/avatar.svg",
+        spec: "SVG Vetorial",
+        desc: "Formato quadrado/circular balanceado para fotos de perfil no GitHub, Discord, Twitter/X, Slack e LinkedIn.",
+        defaultBg: "bg-papel",
+        dark: false
+      },
+      {
+        id: "favicon",
+        name: "Favicon",
+        category: "symbols",
+        filePath: "assets/logos/favicon.svg",
+        spec: "32 × 32 px · SVG",
+        desc: "Ícone web projetado para guias de navegadores, favoritos e web apps com alta legibilidade em escala mínima.",
+        defaultBg: "bg-papel",
+        dark: false
+      },
+      {
+        id: "padrao-cauda",
+        name: "Padrão de Cauda",
+        category: "patterns",
+        filePath: "assets/patterns/padrao-cauda.svg",
+        spec: "Padrão Repetível · SVG",
+        desc: "Elemento gráfico de apoio derivado da silhueta curva da cauda do mascote. Usado sutilmente em divisórias e fundos.",
+        defaultBg: "bg-aveia",
+        dark: false
+      },
+      {
+        id: "nbx-header",
+        name: "Header Banner GitHub",
+        category: "social",
+        filePath: "assets/github/nbx-header.svg",
+        spec: "Banner Retangular · SVG",
+        desc: "Banner oficial de cabeçalho estilizado para a página de perfil da organização NBX Projects no GitHub.",
+        defaultBg: "bg-grafite",
+        dark: true
+      }
+    ];
+
+    // Dados de Cores
+    const BRAND_COLORS = [
+      { name: "Grafite macio", hex: "#302B28", role: "Cor principal, texto e silhueta", lightText: true },
+      { name: "Casca", hex: "#57483F", role: "Apoio e contraste", lightText: true },
+      { name: "Aveia", hex: "#E7D9C9", role: "Rosto, fundos de apoio e padrão", lightText: false },
+      { name: "Papel", hex: "#F8F4EC", role: "Fundo claro institucional", lightText: false },
+      { name: "Argila clara", hex: "#B3A393", role: "Detalhes secundários e bordas", lightText: false }
+    ];
+
+    // Cache de código SVG carregado
+    const svgCodeCache = {};
+
+    // Toast de notificação
+    function showToast(message) {
+      const container = document.getElementById('toastContainer');
+      const toast = document.createElement('div');
+      toast.className = 'toast';
+      toast.innerHTML = `
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        <span>${message}</span>
+      `;
+      container.appendChild(toast);
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(10px)';
+        toast.style.transition = 'all 0.25s ease';
+        setTimeout(() => toast.remove(), 250);
+      }, 3000);
+    }
+
+    // Renderizar Cards de Assets
+    function renderAssets(filter = 'all', searchQuery = '') {
+      const grid = document.getElementById('assetsGrid');
+      grid.innerHTML = '';
+
+      const filtered = ASSETS_DATA.filter(item => {
+        const matchesCat = filter === 'all' || item.category === filter;
+        const matchesSearch = !searchQuery ||
+          item.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          item.desc.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          item.id.toLowerCase().includes(searchQuery.toLowerCase());
+        return matchesCat && matchesSearch;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div style="grid-column: 1/-1; text-align: center; padding: 60px 20px; background: white; border-radius: 16px; border: 1px dashed var(--color-border);">
+            <h3 style="margin-bottom: 8px;">Nenhum asset encontrado</h3>
+            <p style="color: var(--color-casca);">Tente outro termo de busca ou limpe o filtro selecionado.</p>
+          </div>
+        `;
+        return;
+      }
+
+      filtered.forEach(asset => {
+        const card = document.createElement('div');
+        card.className = 'asset-card';
+        card.id = `card-${asset.id}`;
+
+        const bgClass = asset.defaultBg;
+
+        card.innerHTML = `
+          <div class="asset-preview ${bgClass}" id="preview-${asset.id}">
+            <div class="preview-bg-switcher">
+              <span class="bg-dot" style="background: #F8F4EC;" title="Fundo Papel" onclick="setCardBg('${asset.id}', 'bg-papel')"></span>
+              <span class="bg-dot" style="background: #E7D9C9;" title="Fundo Aveia" onclick="setCardBg('${asset.id}', 'bg-aveia')"></span>
+              <span class="bg-dot" style="background: #302B28;" title="Fundo Grafite" onclick="setCardBg('${asset.id}', 'bg-grafite')"></span>
+              <span class="bg-dot" style="background: #FFFFFF;" title="Fundo Branco" onclick="setCardBg('${asset.id}', 'bg-white')"></span>
+              <span class="bg-dot bg-checker" title="Fundo Transparente" onclick="setCardBg('${asset.id}', 'bg-checker')"></span>
+            </div>
+            <img src="${asset.filePath}" alt="${asset.name}" id="img-${asset.id}">
+          </div>
+
+          <div class="asset-info">
+            <div class="asset-badge-row">
+              <span class="asset-type-badge">${asset.category}</span>
+              <span class="asset-spec">${asset.spec}</span>
+            </div>
+
+            <h3 class="asset-name">${asset.name}</h3>
+            <p class="asset-desc">${asset.desc}</p>
+
+            <div class="asset-actions">
+              <a href="${asset.filePath}" download class="btn btn-primary btn-sm">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Baixar SVG
+              </a>
+              <button class="btn btn-outline btn-sm" onclick="downloadPng('${asset.filePath}', '${asset.id}.png', 3)">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                Baixar PNG
+              </button>
+            </div>
+
+            <div class="asset-quick-tools">
+              <button class="tool-link" onclick="copySvgCode('${asset.filePath}', '${asset.name}')">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                Copiar SVG
+              </button>
+              <button class="tool-link" onclick="openModal('${asset.id}')">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6"/><path d="M10 14L21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+                Inspecionar
+              </button>
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    // Alterar fundo do card
+    function setCardBg(assetId, bgClass) {
+      const preview = document.getElementById(`preview-${assetId}`);
+      if (preview) {
+        preview.className = `asset-preview ${bgClass}`;
+      }
+    }
+
+    // Conversão de SVG para PNG via Canvas no cliente
+    function downloadPng(svgUrl, fileName, scale = 2) {
+      const img = new Image();
+      img.crossOrigin = "anonymous";
+      img.onload = function () {
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+        canvas.width = (img.naturalWidth || 600) * scale;
+        canvas.height = (img.naturalHeight || 300) * scale;
+
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+        const a = document.createElement("a");
+        a.download = fileName;
+        a.href = canvas.toDataURL("image/png");
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        showToast(`PNG exportado com sucesso: ${fileName}`);
+      };
+      img.src = svgUrl;
+    }
+
+    // Copiar código SVG bruto para a área de transferência
+    async function copySvgCode(svgUrl, assetName) {
+      try {
+        let code = svgCodeCache[svgUrl];
+        if (!code) {
+          const res = await fetch(svgUrl);
+          code = await res.text();
+          svgCodeCache[svgUrl] = code;
+        }
+        await navigator.clipboard.writeText(code);
+        showToast(`Código SVG copiado: ${assetName}`);
+      } catch (err) {
+        console.error(err);
+        showToast("Não foi possível copiar o SVG.");
+      }
+    }
+
+    // Modal de Inspeção
+    async function openModal(assetId) {
+      const asset = ASSETS_DATA.find(a => a.id === assetId);
+      if (!asset) return;
+
+      document.getElementById('modalTitle').textContent = asset.name;
+      document.getElementById('modalDesc').textContent = asset.desc;
+      document.getElementById('modalImg').src = asset.filePath;
+      document.getElementById('modalPreviewBox').className = `modal-preview-box ${asset.defaultBg}`;
+
+      document.getElementById('modalBtnSvg').onclick = () => {
+        const a = document.createElement('a');
+        a.href = asset.filePath;
+        a.download = `${asset.id}.svg`;
+        a.click();
+      };
+
+      document.getElementById('modalBtnPng').onclick = () => {
+        downloadPng(asset.filePath, `${asset.id}-hd.png`, 4);
+      };
+
+      document.getElementById('modalBtnCopyXml').onclick = () => {
+        copySvgCode(asset.filePath, asset.name);
+      };
+
+      const codeEl = document.getElementById('modalSvgCode');
+      codeEl.textContent = "Carregando XML do vetor...";
+
+      document.getElementById('assetModal').classList.add('active');
+
+      try {
+        let code = svgCodeCache[asset.filePath];
+        if (!code) {
+          const res = await fetch(asset.filePath);
+          code = await res.text();
+          svgCodeCache[asset.filePath] = code;
+        }
+        codeEl.textContent = code;
+      } catch (e) {
+        codeEl.textContent = "Erro ao carregar código XML.";
+      }
+    }
+
+    function closeModal() {
+      document.getElementById('assetModal').classList.remove('active');
+    }
+
+    function setModalBg(bgClass) {
+      document.getElementById('modalPreviewBox').className = `modal-preview-box ${bgClass}`;
+    }
+
+    // Fechar modal ao clicar fora ou com Escape
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+    document.getElementById('assetModal').addEventListener('click', (e) => {
+      if (e.target.id === 'assetModal') closeModal();
+    });
+
+    // Renderizar Seção de Cores
+    function renderColors() {
+      const container = document.getElementById('colorsGrid');
+      container.innerHTML = '';
+
+      BRAND_COLORS.forEach(color => {
+        const card = document.createElement('div');
+        card.className = 'color-card';
+        card.onclick = () => {
+          navigator.clipboard.writeText(color.hex);
+          showToast(`Cor copiada: ${color.name} (${color.hex})`);
+        };
+
+        card.innerHTML = `
+          <div class="color-swatch" style="background-color: ${color.hex};">
+            <span class="color-swatch-badge">Clique para copiar</span>
+          </div>
+          <div class="color-card-body">
+            <div class="color-card-title">${color.name}</div>
+            <div class="color-card-role">${color.role}</div>
+            <div class="color-codes">
+              <div class="color-code-item">
+                <span style="color: var(--color-casca)">HEX</span>
+                <b>${color.hex}</b>
+              </div>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // Baixar todos os ativos empacotados em um único arquivo .ZIP
+    async function downloadAllAssetsZip() {
+      showToast("Gerando arquivo ZIP com todos os assets...");
+
+      if (typeof JSZip === 'undefined') {
+        alert("O recurso de ZIP ainda está carregando ou não está disponível. Você pode baixar os arquivos individualmente nos cards.");
+        return;
+      }
+
+      try {
+        const zip = new JSZip();
+        const logosFolder = zip.folder("logos");
+        const patternsFolder = zip.folder("patterns");
+        const githubFolder = zip.folder("github");
+
+        // Adicionar brand.json
+        const brandRes = await fetch("brand.json");
+        if (brandRes.ok) {
+          const brandJson = await brandRes.text();
+          zip.file("brand.json", brandJson);
+        }
+
+        // Baixar todos os SVGs
+        const promises = ASSETS_DATA.map(async (asset) => {
+          try {
+            const res = await fetch(asset.filePath);
+            const blob = await res.blob();
+            const fileName = asset.filePath.split('/').pop();
+
+            if (asset.category === 'patterns') {
+              patternsFolder.file(fileName, blob);
+            } else if (asset.category === 'social' && asset.id === 'nbx-header') {
+              githubFolder.file(fileName, blob);
+            } else {
+              logosFolder.file(fileName, blob);
+            }
+          } catch (e) {
+            console.warn(`Falha ao incluir ${asset.filePath} no zip:`, e);
+          }
+        });
+
+        await Promise.all(promises);
+
+        const content = await zip.generateAsync({ type: "blob" });
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(content);
+        a.download = "nbx-projects-brand-kit.zip";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        showToast("Brand Kit (.ZIP) baixado com sucesso!");
+      } catch (err) {
+        console.error(err);
+        showToast("Erro ao gerar o pacote ZIP.");
+      }
+    }
+
+    // Inicialização e Eventos
+    document.addEventListener('DOMContentLoaded', () => {
+      renderAssets();
+      renderColors();
+
+      // Contadores e Filtros
+      document.querySelectorAll('.filter-tab').forEach(tab => {
+        tab.addEventListener('click', (e) => {
+          document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+          const cat = tab.dataset.category;
+          const search = document.getElementById('searchInput').value;
+          renderAssets(cat, search);
+        });
+      });
+
+      // Busca em tempo real
+      const searchInput = document.getElementById('searchInput');
+      searchInput.addEventListener('input', (e) => {
+        const activeTab = document.querySelector('.filter-tab.active');
+        const cat = activeTab ? activeTab.dataset.category : 'all';
+        renderAssets(cat, e.target.value);
+      });
+
+      // Controles do Playground de Tipografia
+      const sizeSlider = document.getElementById('fontSizeSlider');
+      const sizeDisplay = document.getElementById('fontSizeDisplay');
+      const weightSelect = document.getElementById('fontWeightSelect');
+      const textPreview = document.getElementById('editablePreview');
+
+      sizeSlider.addEventListener('input', (e) => {
+        sizeDisplay.textContent = `${e.target.value}px`;
+        textPreview.style.fontSize = `${e.target.value}px`;
+      });
+
+      weightSelect.addEventListener('change', (e) => {
+        textPreview.style.fontWeight = e.target.value;
+      });
+    });
+  </script>
+</body>
+
+</html>
